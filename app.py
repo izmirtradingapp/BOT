@@ -69,9 +69,9 @@ def webhook():
 
     try:
         data = json.loads(request.data)
-        order = data['order']
-		api_key = data['api_key']
-		api_secret= data['api_secret']
+        order = data["order"]
+        api_key = data["api_key"]
+        api_secret = data["api_secret"]
         
         client = Client(api_key, api_secret, testnet=False)
 
