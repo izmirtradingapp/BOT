@@ -23,9 +23,9 @@ def webhook():
                 "type":"MARKET",
                 "side":"BUY",
                 "quantity":quot}
-
+        
+        ExitShortPosition(client)
         LongPosition = client.futures_create_order(**params)
-
 
     def ExitLongPosition(client):
         qty = float(client.futures_position_information(symbol="BTCUSDT")[0]["positionAmt"])
@@ -52,7 +52,8 @@ def webhook():
                 "type":"MARKET",
                 "side":"SELL",
                 "quantity":quot}
-
+        
+        ExitLongPosition(client)
         SellPosition = client.futures_create_order(**params)
 
 
