@@ -24,9 +24,12 @@ def webhook():
                 "side":"BUY",
                 "quantity":quot}
         
-        ExitShortPosition(client)
-        LongPos = client.futures_create_order(**params)
-
+        try:
+            ExitShortPosition(client)
+            LongPos = client.futures_create_order(**params)
+        except:
+            LongPos = client.futures_create_order(**params)
+            
     def ExitLongPosition(client):
         qty = float(client.futures_position_information(symbol="BTCUSDT")[0]["positionAmt"])
         params = {
@@ -53,9 +56,11 @@ def webhook():
                 "side":"SELL",
                 "quantity":quot}
         
-        ExitLongPosition(client)
-        ShortPos = client.futures_create_order(**params)
-
+        try:
+            ExitLongPosition(client)
+            ShortPos = client.futures_create_order(**params)
+        except:
+            ShortPos = client.futures_create_order(**params)
 
     def ExitShortPosition(client):
         qty = -(float(client.futures_position_information(symbol="BTCUSDT")[0]["positionAmt"]))
